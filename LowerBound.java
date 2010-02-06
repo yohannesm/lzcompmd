@@ -7,13 +7,20 @@ public class LowerBound{
 
 public static void main(String[] args){
 
-System.out.println(args[0] + " " );
 	char[] inChar;
 	try{
 	inFile = new File(args[0]);
 	inChar = getCharacters();
-	System.out.print(inChar.length);
-        System.out.print("Entropy is: " + entropy(inChar));
+        double entropy = entropy(inChar);
+        double lowerBound = entropy * inChar.length;
+
+        Formatter fmt = new Formatter();
+        fmt.format("%.3f", lowerBound);
+        System.out.print("The lower bound is " + fmt);
+
+        fmt = new Formatter();
+        fmt.format("%.3f", entropy);
+        System.out.print("; the entropy is " + fmt + "\n");
 	}
 
 	catch(Exception e){
