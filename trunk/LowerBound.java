@@ -13,6 +13,7 @@ System.out.println(args[0] + " " );
 	inFile = new File(args[0]);
 	inChar = getCharacters();
 	System.out.print(inChar.length);
+        System.out.print("Entropy is: " + entropy(inChar));
 	}
 
 	catch(Exception e){
@@ -27,7 +28,8 @@ public static double log2(double n){
 
 public static double entropy(char[] inChar){
        HashMap map = new HashMap(); 
-       for(int i=0; i<inChar.length; ++i){
+       int length = inChar.length;
+       for(int i=0; i<length; ++i){
             if( map.get(inChar[i] ) == null) {
 	      map.put(inChar[i], new Integer(1));
 	    }
@@ -36,10 +38,21 @@ public static double entropy(char[] inChar){
 	    map.put(inChar[i], new Integer(val + 1));
 	    }
        }
-	
-	
 
- return 0.0;
+       Integer temp;
+       double entropy = 0.0;
+       int tmpint;
+       double probability;
+
+       for ( Iterator iter = map.keySet().iterator(); iter.hasNext(); )
+       {
+           temp = (Integer)map.get( iter.next() );
+	   tmpint = temp.intValue();
+           probability = (double)tmpint / (double)length;
+           entropy -= probability * log2(probability);
+       }
+
+ return entropy;
 }
 	
 		public static char[] getCharacters() throws Exception {
