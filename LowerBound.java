@@ -2,9 +2,15 @@ import java.util.*;
 import java.io.*;
 
 public class LowerBound{
-
+   
+   //input file we are taking in
    static protected File inFile; 
 
+/* 
+ * main function where we take in a file 
+ * and then compute the entropy and the lower bound of the text file 
+ * to be able to determine the compression rate for that specific file
+ */
 public static void main(String[] args){
 
 	char[] inChar;
@@ -29,10 +35,17 @@ public static void main(String[] args){
 
 }
 
+//small function to calculate the log base of 2
 public static double log2(double n){
 	return (Math.log(n)/Math.log(2));
 }
 
+/* 
+ * function to calculate the entropy with a double precision
+ * We use a hashmap to store each character that is in the text file
+ * We count the probability of each character in this specific text file
+ * so our Map's key = character and the value is the number of occurence of it in the file
+ */
 public static double entropy(char[] inChar){
        HashMap map = new HashMap(); 
        int length = inChar.length;
@@ -53,6 +66,7 @@ public static double entropy(char[] inChar){
 
        for ( Iterator iter = map.keySet().iterator(); iter.hasNext(); )
        {
+           //typecasting from Object to Integer
            temp = (Integer)map.get( iter.next() );
 	   tmpint = temp.intValue();
            probability = (double)tmpint / (double)length;
@@ -61,7 +75,12 @@ public static double entropy(char[] inChar){
 
  return entropy;
 }
-	
+	/*
+	 * getCharacters method from IO.java skeleton file
+	 * we turn the inputFile into a char array for
+	 * easier processing and computation
+	 * 
+	 */
 		public static char[] getCharacters() throws Exception {
 			char[] ret = new char[(int) (inFile.length()+1)];
 			int retCursor = 0; 
