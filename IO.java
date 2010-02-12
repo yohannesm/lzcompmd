@@ -3,7 +3,7 @@ import java.io.*;
 
 
 public class IO {
-	public static final boolean DEBUGGING = false; // Set to TRUE to print debugging information
+	public static final boolean DEBUGGING = true; // Set to TRUE to print debugging information
 	public static final int BLOCK_SIZE = 128; // Don't touch
 	
 	// File extensions
@@ -126,7 +126,7 @@ public class IO {
 			
 			if(DEBUGGING) {
 				// This is to help you during debugging, please comment this out for large files
-				System.out.println(" ( " + index + ", " + character + " )");
+				System.out.println(" ( " + index + ", " + (int)character + " )");
 			}
 		} 
 		
