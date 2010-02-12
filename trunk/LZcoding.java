@@ -43,7 +43,6 @@ public static void main(String[] args) {
      int num = 0; char ch;
      for(int i=0; i<charArray.length; ){
 	String str = dictionary.find(charArray, i);
-        System.out.println(str);
 	dictionary.add(str);
 	num = dictionary.getIndex(str);
 	ch = dictionary.getChar(str);
