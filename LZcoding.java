@@ -58,18 +58,25 @@ public static void main(String[] args) {
 
   public static void decompress(String inFile) throws Exception{
 	IO.Decompressor io = new IO.Decompressor(inFile);
-        while(true) {
-	//   ....
-
- 	   IO.pair next = io.decode();
-   //	   ....
-  
+        HashMap<Integer, String> dictionary = new HashMap<Integer, String>();
+        int count = 1;
+        dictionary.put(new Integer(0), new String() );
+        String output;
+        Integer index;
+        char character = 1;
+        while(character != 0) {
+ 	   IO.Pair next = io.decode();
+           index = new Integer(next.getIndex());
+           character = next.getCharacter();
+           output = dictionary.get(index);
+           output = output + character;
+           dictionary.put(new Integer(count), output);           
    	   io.append(output);
-  //	  ....
+           count++;
   }
   /* Close all relevant files */
   io.done();
-}
+
 
 
   }//end decompress
